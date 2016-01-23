@@ -1,20 +1,63 @@
 <!doctype html>
-<html>
-  <head>
+<html lang="en">
+
+	<head>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta charset="utf-8">
-    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
 
-    <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= current_page.data.title || "Middleman" %></title>
+    <title><%= current_page.data.title || "Command Line Guide" %></title>
 
-    <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+		<meta name="description" content="Confused by why people still use that old ugly thing? Here's why, and how to use it. Good news! It's not as hard as you think.">
+		<meta name="author" content="Chad Ostrowski">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi)
+        ? 'stylesheets/print/pdf.css'
+        : 'stylesheets/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="javascripts/lib/html5shiv.js"></script>
+		<![endif]-->
 
     <%= stylesheet_link_tag :site %>
-    <%= javascript_include_tag :all %>
-  </head>
+	</head>
 
   <body class="<%= page_classes %>">
     <%= yield %>
-  </body>
+
+    <%= javascript_include_tag 'reveal', 'lib/head.min' %>
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '/javascripts/lib/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '/javascripts/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '/javascripts/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '/javascripts/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '/javascripts/plugin/zoom-js/zoom.js', async: true },
+          { src: '/javascripts/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+	</body>
 </html>
