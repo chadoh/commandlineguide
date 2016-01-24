@@ -6,15 +6,14 @@ title: A Non-Nerd's Guide to the Command Line
   %section
     %h3 A Non-Nerd's Guide To
     %h1 The Command Line
-    %img(src='http://blog.marc-seeger.de/assets/2009/12/30/terminal.png'
-         alt='' class='no-border')
+    %img(src='http://blog.marc-seeger.de/assets/2009/12/30/terminal.png' alt='')
     :markdown
 
       To jump right in and start using it, go that way. &rarr;
-
+      <br/>
       &darr; Or go this way to get some context.
 
-      <small>Using the arrow keys on your keyboard works the best.</small>
+      <small>Using `→`, `↓`, & `space` on your keyboard works the best.</small>
 
   %section
     %h2 1969
@@ -58,34 +57,47 @@ title: A Non-Nerd's Guide to the Command Line
       overwhelming, just stop for the day.
 
 %section
-  %h2 Ingredients
-  %h3 On a Mac
-  :markdown
-    * Hit Command & Space and type "Terminal". Open it. This is your "command
-      line".
-    * Open up Finder (you can do the Command-Space thing again) and find your
-      home directory (it's the one in the sidebar with a house icon, and it's
-      probably named after you).
-  %h3 On Windows
-  :markdown
-    * Open up [Git-Bash][gitbash]. This is your "command line".
-    * Open your My Documents folder (or whatever it's called these days).
+  %section
+    %h2 Ingredients
+    %h3 On a Mac
+    :markdown
+      * Hit Command & Space and type "Terminal". Open it. This is your "command
+        line".
+      * Open up Finder (you can do the Command-Space thing again) and find your
+        home directory (it's the one in the sidebar with a house icon, and it's
+        probably named after you).
 
-      [gitbash]: http://git-scm.com/download/win
+  %section
+    %h3 On Linux
+    :markdown
+      * Open your terminal
+      * Open your file browser and navigate to your home folder
+
+  %section
+    %h3 On Windows
+    :markdown
+      * Open up [Git-Bash][gitbash]. This is your "command line".
+      * Open your My Documents folder (or whatever it's called these days).
+
+        [gitbash]: http://git-scm.com/download/win
 
 %section
   %section
     %h2 Listing
     :markdown
       The command line is a very simple way of interacting with a computer (simple
-      for the computer, anyhow!). You just type a command and then hit "Enter" on
-      your keyboard.
+      for the computer, anyhow!). You just type a command and then hit
+      `enter`/`return` on your keyboard.
 
       <small>This obviously requires a bit of memorization. But
       the internet is there when we forget.</small>
 
-      One command that people use all the time is listing files. Try it now! Type
-      what comes after the dollar sign into your command line, and then hit Enter:
+      One thing people need to do all the time is list files. &darr; This way
+      to try it now! &darr;
+  %section
+    :markdown
+      Type what comes after the dollar sign into your command line, and then
+      hit `enter`:
 
           $ ls
 
@@ -97,8 +109,8 @@ title: A Non-Nerd's Guide to the Command Line
   %section
     %h3 Long Listing
     :markdown
-      Now press the up arrow on your keyboard. Now that you got your `ls` back,
-      turn it into this & hit Enter:
+      Press `↑` on your keyboard. Now that you got your `ls` back, turn it
+      into this & hit `enter`:
 
           $ ls -l
 
@@ -133,14 +145,15 @@ title: A Non-Nerd's Guide to the Command Line
     %h2 Moving Around
     :markdown
       In the days when the command line was created, folders were called
-      _directories_. So to <strong>c</strong>hange
-      <strong>d</strong>irectories, try this:
+      _directories_. So to <strong><em>c</em></strong>hange
+      <strong><em>d</em></strong>irectories, try this:
 
           $ cd Desktop
           $ ls
 
       Now you're looking at your desktop on the command line. You
-      <strong>c</strong>hanged into the <strong>d</strong>irectory called
+      <strong><em>c</em></strong>hanged into the
+      <strong><em>d</em></strong>irectory called
       Desktop.
 
       &darr; This way to keep from getting lost.
@@ -182,7 +195,7 @@ title: A Non-Nerd's Guide to the Command Line
       Here are some tricks to avoid typing:
 
       * `.` means "the directory you're in now". `ls .` = `ls`; `cd .` does nothing.
-        But it's useful sometimes.
+        But `.` is useful sometimes.
       * `~` (tilde) means "your home directory". You can `cd` into really obscure
         folders and easily `ls ~` or `cd ~`.
       * `cd` without anything after it (without any _arguments_) does the same
@@ -239,9 +252,18 @@ title: A Non-Nerd's Guide to the Command Line
     :markdown
       Listing files is cool & all, but what if you want to see what's in them?
       There are lots of ways to do this. Some of the most common are `cat`
-      (which con*cat*enates files), `more`, and `less`. Download [this
-      file][quote] into your current working directory (remember [pwd][pwd]?)
-      and then take a look:
+      (which con*cat*enates files), `more`, and `less`.
+
+      You'll need a file to read! Download [this file][quote] into your current
+      working directory. Right-click the link (or control-click, or two-finger
+      click) and select "save link as". If you can't remember where
+      you should save it to, use [pwd] to remind yourself.
+
+      Now let's read it! &darr;
+
+  %section
+    :markdown
+      Try three ways of reading it. Try these one at a time:
 
           $ cat this-is-water
           $ more this-is-water
@@ -254,7 +276,7 @@ title: A Non-Nerd's Guide to the Command Line
         [pwd]: #/3/1
 
   %section
-    %h3 Less Is More
+    %h3 More with Less
     :markdown
       So `cat` and `more` just plopped the contents of the file into _standard
       output_, but `less` took things over & messed up your scrolling. To get
@@ -268,11 +290,21 @@ title: A Non-Nerd's Guide to the Command Line
       <small>At this point I _must_ pause and tell you to hit _Tab_ on your
       keyboard. Ta-da! Stop typing so much.</small>
 
-      Ok, now, to scroll down, hit `Space` or `d`. To scroll up, hit `b` or
-      `u`. These are common scrolling controls. `more` and `cat` actually use
-      them, too, if the content is too big to all fit in your window.
+      Now open it up with `less` again, and let's learn how to scroll. &darr;
 
         [dooms]: /my-father-moved-through-dooms-of-love
+
+  %section
+    %h3 Less &amp; More Scrolling
+    :markdown
+      * To scroll down, try `space` and also `d`
+      * To scroll up, try `b` and also `u`
+
+      `space` and `b` scroll a page at a time. `d` and `u` scroll half a page.
+      `e` and `y`, line by line.
+
+      Now try reading the file with `more`. You can use all of these same
+      scrolling commands. Lots of programs use them.
 
 %section
   %section
@@ -313,7 +345,7 @@ title: A Non-Nerd's Guide to the Command Line
     These were the basics. Play with what you learned! Have fun! Come back here
     when you forget things.
 
-    When you're ready, you can learn how the pros do it with [this fledgling
+    When you're ready, you can learn how the pros do it with the [fledgling
     nerd's guide to the command line][fledgling-nerds-guide].
 
-      [fledgling-nerds-guide]: /a-fledgling-nerds-guide-to-the-command-line
+      [fledgling-nerds-guide]: /fledgling.html

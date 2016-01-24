@@ -8,17 +8,40 @@ title: A Fledgling Nerd's Guide to the Command Line
     %h1 The Command Line
     %a(href="http://www.iterm2.com/")
       %img(src='http://upload.wikimedia.org/wikipedia/en/d/d7/ITerm2-icon.png'
-           alt='' class='no-border' style="width: 256px")
+           alt='' style="width: 256px")
     :markdown
-      This is the second part of a [non-nerd's guide][non-nerds-guide] to
+      This is the second part of [a non-nerd's guide](/) to
       the command line. You'll be definitively intermediate by the finish.
       To get started, go that way. &rarr;
 
-        [non-nerds-guide]: /a-non-nerds-guide-to-the-command-line
+%section
+  %section
+    %h2 Making It Pretty
+    :markdown
+      Bash can be customized by putting a `.bashrc` file in your home
+      directory.
+
+      <small>`rc` stands for "Runtime Control", which doesn't shed a whole lot
+      of light. Just remember that rc files are configuration files.</small>
+
+      Here's a nice introductory [.bashrc][brc] file that you can download to
+      get started (make sure to save it to your home folder as ".bashrc" (_with
+      the dot!!_)). You can [search Github][dotfiles] for "dotfiles" for lots
+      of other ideas.
+
+        [brc]: /bashrc
+        [dotfiles]: https://github.com/search?q=dotfiles+bash&repo=&langOverride=&start_value=1&type=Everything&language=
+
+  %section
+    %h3 Pretty Prompt
+    :markdown
+      Look through the .bashrc you downloaded for instructions on how to make your shell look like this.
+
+      ![a shell with pretty and minimalist prompt](/images/pretty-prompt.png)
 
 %section
   %section
-    %h2 Editing Files
+    %h2 Editing Files &ndash; nano
     :markdown
       [Looking at contents of files][reading] is nice, but you can also edit them right
       from the command line. The simplest way is arguably `nano`. Go ahead
@@ -27,16 +50,32 @@ title: A Fledgling Nerd's Guide to the Command Line
           $ nano my-father-moved-through-dooms-of-love
 
       You can move the cursor around in `nano` with the arrow keys.  `nano`
-      also has a bunch of shortcuts, which are all listed at the bottom (the
-      `^` means "Control").  "WriteOut" means "Write the contents of this file
-      Out to disc", which really just means "save". So to save the file after
-      editing it, hit Control-O.
+      also has a bunch of shortcuts, which are all listed at the bottom. This way to learn what they mean. &darr;
 
-        [reading]: /a-non-nerds-guide-to-the-command-line#/5
+        [reading]: /#/5
         [dooms]: /my-father-moved-through-dooms-of-love
 
   %section
-    %h2 Vim
+    %h2 Nano Shortcuts (nanocuts?)
+    :markdown
+
+      `^` means "Control".
+
+      "WriteOut" means "*Write* the contents of this file *Out* to disc", which
+      really just means "save". In the crusty world of shell, "write" is a
+      common synonym of "save".
+
+      So to save the file after editing, hit `^O`, that is, Control-O.
+
+      To exit, `^X` (Control-X).
+
+      <small>PS: "nanocuts" would make a good band name</small>
+      <br>
+      <small>PPS: So would "Crusty World of Shell"</small>
+
+%section
+  %section
+    %h2 Editing Files &ndash; vim
     :markdown
       `vim` is weird & [hard to learn][vimbook], but a lot of people [love it a
       lot][whyvim]. You'll inevitably run into it on your adventures, so it'll
@@ -52,26 +91,127 @@ title: A Fledgling Nerd's Guide to the Command Line
         [whyvim]:  http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 
   %section
-    %h2 More Vim
+    %h2 One Mode to Rule Them All
     :markdown
-      * **Modes**: `vim` starts out in "normal" mode, in which you cannot
-        edit text. To move around in normal mode, press `h`, `j`, `k`, & `l`.
-      * **Insert**: To enter "insert" mode (in which you actually edit stuff),
-        hit `i`. To get back into "normal" mode (where you're _supposed to
-        be_), hit "Escape" on your keyboard (waay in the top left).
-      * **Commands**: To save, make sure you're in Normal mode and type `:w`
-        and press Enter. To get out of `vim`, type `:q`. (You can combine these
-        to save & quit: `:wq`.)
+      Vim has modes. Not moods; modes. Maybe it's moody, too, though. idk
+
+      Vim starts out in "normal" mode. This is where vim pros spend most of
+      their time. But a funny thing about Normal mode: *you can't type anything in it*.
+
+      Yes! Vim is an editor that, by default, does not let you type text! And
+      though that sounds crazy, it turns out to be delightful, empowering,
+      out-of-the-box thinking.
+
+      Find out why &darr;
+
+  %section
+    %h2 Lazy Scrollers
+    :markdown
+      Vim pros, being good [lazy] coders, don't want to move their hands *the
+      whole painful way* to the arrow keys. Have you ever heard of Repetitive
+      Strain Injury? No thank you! To learn The Vim Way, stop reaching and try:
+
+      * `j` to move down
+      * `k` to move up
+      * `h` to move left
+      * `l` to move right
+
+      Aaahhhh... All right on home row! Stop moving those hands! For more vim
+      goodness, right this way &darr;
+
+        [lazy]: http://threevirtues.com/
+
+  %section
+    %h2 Manipulating Text
+    :markdown
+      Even though `j` and `k` move a cursor rather than type "j" or "k",
+      Normal Mode is great for manipulating text. Try:
+
+      * `dd` to delete the current line
+      * `D` to delete to the end of the current line
+      * `yy` to yank (copy) the current line
+      * `p` to paste whatever you last deleted or yanked
+      * `>>` & `<<` to indent & outdent the current line
+      * `6dd`, `5D`, `4yy`, `3>>`, & `2p` &ndash; guess. Try them.
+      * `.` to redo the last text-changing command
+
+      But what about, you know, actually typing? &darr;
+
+  %section
+    %h2 Inserting Text
+    :markdown
+      To insert text, you need to put vim into Insert Mode. Once you're done
+      typing, hit `escape` (top left of the keyboard) to go back to Normal Mode
+      asap. Try:
+
+      * `i` & `I` to insert before cursor/line
+      * `a` & `A` to append after cursor/line
+      * `o` & `O` to *open* a new line of text – try it!
+      * `C` to change to the end of the line
+      * `s` & `S`: substitute (replace) current character/line
+      * `.` same thing as before. Worth mentioning twice.
+
+      How to save all these beautiful edits, though? &darr;
+
+  %section
+    %h2
+      Colon Commands (<code>:</code> not
+      <img draggable="false" class="emoji" alt="💩" src="https://twemoji.maxcdn.com/72x72/1f4a9.png">)
+    :markdown
+      Vim has a whole "command mode" that isn't really a mode. While in Normal
+      Mode, you can type `:`, followed by a command. For example:
+
+      * `:w` will save (because ["write" means "save"][write])
+      * `:q` will quit vim
+      * `:wq`, `:x`, or (even lazier) `ZZ` will save and quit
+      * `:!mkdir hey` will run `mkdir hey` in your shell &ndash; you can run
+        any shell command right from vim this way
+
+      Wee! You know so much vim now!<br/> But how to remember it all? &darr;
+
+        [write]: #/2/1
+
+  %section
+    %h2 Cheater Cheater Pumpkin Eater
+    :markdown
+      Vim is best learned in little chunks. If you memorize the commands you
+      just learned, you'll already be as fast (or faster) with vim as with your
+      current editor.
+
+      So bookmark this page, and keep coming back until you don't need to.
+      But better yet, bookmark [this cheat sheet](http://vim.rtorr.com/), and
+      refer to it constantly while you use vim. After a couple weeks, you won't
+      need it anymore.
+
+      And one last thing. We all like pretty things. Let's make vim prettier. &darr;
+
+  %section
+    %h2 But it's so ugly
+    :markdown
+      By default, yes. Vim is ugly. But with a configuration file, it too can
+      have colors and remember indentation levels.
+
+      Save [this file](/vimrc) into your home directory as `.vimrc`. It's a
+      simple file&mdash;open it (with vim!) and you could definitely figure out
+      what it's doing. Each line of it is actually something you could type in
+      a colon command (try it out!).
+
+      If you want to make it even prettier, check out these [dotfiles]. Using
+      plugins, they add nice things like a file navigator sidebar, quick file
+      finder, and super-fast folder-wide search.
+
+        [dotfiles]: https://github.com/chadoh/dotfiles
 
   %section
     %h2 Flame Wars
     :markdown
       Some programmers get really territorial and religious about their editor
-      of choice. They make gang signs for `vim` and `emacs` (another popular
+      of choice. They make [gang signs][gang] for `vim` and `emacs` (another popular
       editor). It's silly.
 
       [![comic about editors][comic]][link]
 
+        [gang]: https://twitter.com/chrischau/status/20322575538
         [comic]: http://imgs.xkcd.com/comics/real_programmers.png "Real programmers set the universal constants at the start such that the universe evolves to contain the disk with the data they want."
         [link]:  http://xkcd.com/378/
 
@@ -90,6 +230,31 @@ title: A Fledgling Nerd's Guide to the Command Line
       instructions on any system. &darr;
 
   %section
+    %h2 Live Dangerously &ndash; Unix
+    :markdown
+      On most *nix-based systems these days (unix, linux, OSX), you're not
+      allowed to just run around as a super user because that's _scary_.
+      Instead, you prefix specific commands with `sudo`:
+
+          $ cd /
+          $ ls
+          $ mkdir bahaha
+          $ sudo mkdir bahaha
+
+      <small>
+        When you type in your password, you won't see it.  You won't
+        even see [splats](/#/3/3). That's intentional, just type your password
+        into the void & hit Enter.
+      </small>
+
+      <small>
+        `/` is the _root directory_, which is where your whole hard drive's
+        filesystem starts. When you `cd ..` here, you stay here.  You're not
+        allowed to change things in here unless you `sudo`, which means _Super
+        User DO_.
+      </small>
+
+  %section
     %h2 Living Dangerously on Windows
     :markdown
       On Windows, you'll need to find the Git-Bash icon either on your Desktop
@@ -101,31 +266,6 @@ title: A Fledgling Nerd's Guide to the Command Line
           $ mkdir woohoo
           $ rm -r woohoo
 
-      &darr; Keep going for instructions for anything but Windows.
-
-  %section
-    %h2 Living Dangerously On Anything But Windows
-    :markdown
-      On most *nix-based systems these days, you're not allowed to just run
-      around as a super user because that's _scary_. Instead, you prefix
-      specific commands with `sudo`:
-
-          $ cd /
-          $ ls
-          $ mkdir bahaha
-          $ sudo mkdir bahaha
-
-      <small>
-        When you type in your password, you won't see it.  You won't
-        even see [splats](#/3/3). That's intentional, just type your password
-        into the void & hit Enter.
-
-        `/` is the _root directory_, which is where your whole hard drive's
-        filesystem starts. When you `cd ..` here, you stay here.  You're not
-        allowed to change things in here unless you `sudo`, which means _Super
-        User DO_.
-      </small>
-
   %section
     %h2 It's Like This
     :markdown
@@ -134,7 +274,7 @@ title: A Fledgling Nerd's Guide to the Command Line
         [comic]: http://imgs.xkcd.com/comics/sandwich.png "Proper User Policy apparently means Simon Says"
         [link]:  http://xkcd.com/149/
 
-      <small>By the way, you might want to `rm bahaha` now.</small>
+      <small>By the way, you might want to `rm -r bahaha` now.</small>
 
 %section
   %section
@@ -157,21 +297,6 @@ title: A Fledgling Nerd's Guide to the Command Line
         [ascii]: https://en.wikipedia.org/wiki/ASCII
 
   %section
-    %h2 Getting Cowsay and other fun things on Linux
-    :markdown
-      If you're using Linux, then you already have a package manager that you
-      can use. On Ubuntu, you have two options, `apt-get` or `aptitude`.
-      `aptitude` seems to be preferred by some people because it's better at
-      uninstalling things. So:
-
-          $ sudo aptitude install cowsay
-          $ cowsay Hooray!
-
-      If you're using a different version of Linux, then instead of `aptitude`
-      you might have `yum` or something. Just search the web for what package
-      manager to use with your flavor of Linux.
-
-  %section
     %h2 Getting Cowsay and other fun things on OSX
     :markdown
       The preferred package manager for your Mac running OSX these days is
@@ -183,20 +308,37 @@ title: A Fledgling Nerd's Guide to the Command Line
           $ cowsay Hooray!
 
       <small>Note that Homebrew may whine about not having Xcode (or a
-      compiler). Luckily, for `cowsay`, you don't need this. But for some
+      compiler). Luckily, for `cowsay`, you don't need it. But for some
       things you might, so feel free to [download Xcode][store] from the Mac
       App Store (you only _need_ the [command line tools for Xcode][cli], but
       to just get those you need to sign up as an Apple developer. But that may
       be faster, since Xcode is a _huuuge_ install.)</small>
 
-        [brew]: http://mxcl.github.com/homebrew/
+        [brew]: http://brew.sh/
         [store]: http://itunes.apple.com/us/app/xcode/id497799835
         [cli]: https://developer.apple.com/downloads
 
   %section
+    %h2 Getting Cowsay and other fun things on Linux
+    :markdown
+      If you're using Linux, then you already have a package manager that you
+      can use. On Ubuntu, you have two options, `apt-get` or `aptitude`.
+      `aptitude` seems to be preferred by some people because it's better at
+      uninstalling things. So:
+
+          $ sudo aptitude install cowsay
+          $ cowsay Hooray!
+
+      <small>
+        If you're using a different version of Linux, then instead of `aptitude`
+        you might have `yum` or something. Just search the web for what package
+        manager to use with your flavor of Linux.
+      </small>
+
+  %section
     %h2 Getting Cowsay and other fun things on Windows
     :markdown
-      Coming soon&hellip;
+      No idea. If you know, [please tell me](https://twitter.com/chadoh).
 
 %section
   %h2 Read The Effing Manual
@@ -212,10 +354,10 @@ title: A Fledgling Nerd's Guide to the Command Line
     <small>This may open in `less`. [Remember less][less]?</small>
 
     Go ahead and check out the manual for some of the programs you've
-    learned about (`cd`, `less`, `cowsay`, etc).
+    learned about (`less`, `cowsay`, etc).
 
       [n00b]: https://en.wikipedia.org/wiki/N00b
-      [less]: /a-non-nerds-guide-to-the-command-line#/5/1
+      [less]: /#/5
 
 %section
   %section
@@ -269,46 +411,18 @@ title: A Fledgling Nerd's Guide to the Command Line
 %section
   %h2 I Quit
   :markdown
-    To _force quit_ a process that seems to be stuck, just hit Control-C.
+    To _force quit_ a process that seems to be stuck, just hit Control-C (*not*
+    Command-C, OSX users!)
 
     This is used in a lot of places. Open up `ls ~ | less` and then hit
     Shift-F. This _follows_ the file, automatically showing you new content
-    as it appears. To get it to stop following the file, you have to
-    "interrupt" it, which you do with Control-C. Then you can `q` as normal
-    to get out of `less` altogether.
+    as it appears (which makes more sense with a log). To get it to stop
+    following the file, you have to "interrupt" it, which you do with
+    Control-C. Then you can `q` as normal to get out of `less` altogether.
 
-%section
-  %section
-    %h2 Making It Pretty
-    :markdown
-      Bash can be customized by putting a `.bashrc` file in your home
-      directory. This is a common pattern; you can also have a `.vimrc`,
-      a `.nanorc`, and rc files for many other unix programs.
-
-      <small>`rc` stands for "Runtime Control", which doesn't shed a whole lot
-      of light. Just remember that rc files are configuration files.</small>
-
-      Here's a nice getting-started [.bashrc][brc] file that you can
-      download and edit with `nano` or `vim` to get started (make sure to save it
-      to your home folder as ".bashrc" (_with the dot!!_)). You can [search
-      Github][dotfiles] for "dotfiles" for lots of other ideas.
-
-        [brc]: /.bashrc
-        [dotfiles]: https://github.com/search?q=dotfiles+bash&repo=&langOverride=&start_value=1&type=Everything&language=
-
-  %section
-    %h3 Pretty Prompt
-    %img(src='http://f.cl.ly/items/2e0K0t1q050i1W2B011P/dotfiles.png'
-         alt='a pretty shell prompt' class='no-border')
-    :markdown
-      Look through the .bashrc you downloaded for instructions on how to make your shell look like this.
-
-%section
+%section(data-background="/images/hooray.png")
   %h2 Awesome
   :markdown
     You know a lot about the command line.
 
     Go boss your computer around.
-
-  %img(class='no-border' alt=''
-    src='/assets/images/hooray.png')

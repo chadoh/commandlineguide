@@ -5,7 +5,22 @@
 // Code syntax highlighting
 @import "lib/zenburn.css";
 
-.no-border {
-  border: none !important;
-  background: none !important;
+.reveal section img, .emoji {
+  border: none;
+  background: none;
+  margin: 0;
+  box-shadow: none;
+}
+.emoji {
+  vertical-align: bottom !important;
+}
+
+.reveal code {
+  box-shadow: 0 0 0.4em rgba(255,255,255,0.4) inset;
+  border-radius: 0.2em;
+  padding: 0 0.3em;
+  display: inline-block;
+}
+.reveal pre code {
+  box-shadow: none;
 }

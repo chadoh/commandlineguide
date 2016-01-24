@@ -1,0 +1,119 @@
+# WELCOME TO YOUR FIRST .bashrc!
+# After you make changes, you'll have to run `source ~/.bashrc`
+# in order to see them in your current shell.
+
+
+# Case-insensitive `ls f*` (both "F" files and "f" files listed)
+# If you want case-insensitive tab-completion, put
+# `set completion-ignore-case on` in ~/.inputrc
+shopt -s nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+# (lets you press the up arrow to see things you typed last week)
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Prefer US English and use UTF-8
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US"
+
+# Make vim the default editor
+export EDITOR="vim -f"
+# make `man <whatever>` open in less; the -R makes less support color
+export MANPAGER="less -R"
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="$ORANGE"
+
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
+# Make some commands not show up in history, if you want
+#export HISTIGNORE="cd:cd -:pwd;exit:date:* --help"
+
+# where to look for unix programs (different folders separated with `:`)
+# `$PATH` is the original; this just adds new things without destroying it
+export PATH="~/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+
+#################
+### Shortcuts ###
+#################
+
+# Easier navigation: .., ..., and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias -- -="cd -"
+
+# Other Shortcuts
+alias g="git"
+alias v="vim"
+
+# List all files colorized in long format, including hidden files
+alias ll='ls -alFGh'
+
+# List only directories
+alias lsd='ls -l | grep "^d"'
+
+# Show directories with trailing slash when `ls`ing
+alias ls='ls -p'
+
+# Always use color output for `ls`
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  alias ls="command ls -G"
+else
+  alias ls="command ls --color"
+	export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+fi
+
+# Make the terminal support more colors
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+	export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then
+	export TERM=xterm-256color
+fi
+
+
+############################
+# PRETTY PROMPT!
+############################
+# The Prompt is where you enter commands.
+# By default, it shows your name and your current directory,
+# but you can make it look however you want.
+
+#colors
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+cyan=$(tput setaf 6)
+pink=$(tput setaf 5)
+reset=$(tput sgr0)
+
+# On a Mac with homebrew, you should `brew install git bash-completion` to get this.
+# You want this!
+if hash brew 2>/dev/null && [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+elif [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+else
+  function parse_git_dirty() {
+    [[ $(command git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo " *"
+  }
+  function __git_ps1() {
+    command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty) /"
+  }
+fi
+
+# Finally, after all that, the prompt itself!
+PS1="\[$cyan\]\W\[$reset\] \[$pink\]\$(__git_ps1 %s' ')\[$reset\]→ "
+PS2=" > "
+
+# For a pretty complete-looking list of what special characters you can use
+# (like the "\W" above), check out
+# http://linuxconfig.org/Bash_prompt_basics#3-bash-prompt-special-characters
