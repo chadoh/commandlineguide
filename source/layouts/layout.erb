@@ -34,7 +34,14 @@
 	</head>
 
   <body class="<%= page_classes %>">
-    <%= yield %>
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <%= yield %>
+      </div>
+    </div>
+
 
     <%= javascript_include_tag 'reveal', 'lib/head.min' %>
     <script>
