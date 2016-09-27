@@ -16,31 +16,6 @@ title: A Fledgling Nerd's Guide to the Command Line
 
 %section
   %section
-    %h2 Making It Pretty
-    :markdown
-      Bash can be customized by putting a `.bashrc` file in your home
-      directory.
-
-      <small>`rc` stands for "Runtime Control", which doesn't shed a whole lot
-      of light. Just remember that rc files are configuration files.</small>
-
-      Here's a nice introductory [.bashrc][brc] file that you can download to
-      get started (make sure to save it to your home folder as ".bashrc" (_with
-      the dot!!_)). You can [search Github][dotfiles] for "dotfiles" for lots
-      of other ideas.
-
-        [brc]: /bashrc
-        [dotfiles]: https://github.com/search?q=dotfiles+bash&repo=&langOverride=&start_value=1&type=Everything&language=
-
-  %section
-    %h3 Pretty Prompt
-    :markdown
-      Look through the .bashrc you downloaded for instructions on how to make your shell look like this.
-
-      ![a shell with pretty and minimalist prompt](/images/pretty-prompt.png)
-
-%section
-  %section
     %h2 Editing Files &ndash; nano
     :markdown
       [Looking at contents of files][reading] is nice, but you can also edit them right
@@ -122,6 +97,16 @@ title: A Fledgling Nerd's Guide to the Command Line
         [lazy]: http://threevirtues.com/
 
   %section
+    %h2 The Most Important Command
+    :markdown
+      `u` to undo.
+
+      Messed something up? Make sure you're in normal mode, then type `u`. Phew!
+
+      To redo, type `^r` (that's control (not command) and `r`. `r` by itself
+      was already taken!)
+
+  %section
     %h2 Manipulating Text
     :markdown
       Even though `j` and `k` move a cursor rather than type "j" or "k",
@@ -155,8 +140,7 @@ title: A Fledgling Nerd's Guide to the Command Line
 
   %section
     %h2
-      Colon Commands (<code>:</code> not
-      <img draggable="false" class="emoji" alt="💩" src="https://twemoji.maxcdn.com/72x72/1f4a9.png">)
+      Colon Commands (<code>:</code> not 💩)
     :markdown
       Vim has a whole "command mode" that isn't really a mode. While in Normal
       Mode, you can type `:`, followed by a command. For example:
@@ -169,10 +153,10 @@ title: A Fledgling Nerd's Guide to the Command Line
 
       Wee! You know so much vim now!<br/> But how to remember it all? &darr;
 
-        [write]: #/2/1
+        [write]: #/1/1
 
   %section
-    %h2 Cheater Cheater Pumpkin Eater
+    %h2 Cheater Cheater <nobr>Pumpkin Eater 🎃 </nobr>
     :markdown
       Vim is best learned in little chunks. If you memorize the commands you
       just learned, you'll already be as fast (or faster) with vim as with your
@@ -186,7 +170,7 @@ title: A Fledgling Nerd's Guide to the Command Line
       And one last thing. We all like pretty things. Let's make vim prettier. &darr;
 
   %section
-    %h2 But it's so ugly
+    %h2 It's so ugly 👻
     :markdown
       By default, yes. Vim is ugly. But with a configuration file, it too can
       have colors and remember indentation levels.
@@ -203,7 +187,7 @@ title: A Fledgling Nerd's Guide to the Command Line
         [dotfiles]: https://github.com/chadoh/dotfiles
 
   %section
-    %h2 Flame Wars
+    %h2 Flame Wars 🔥
     :markdown
       Some programmers get really territorial and religious about their editor
       of choice. They make [gang signs][gang] for `vim` and `emacs` (another popular
@@ -214,6 +198,65 @@ title: A Fledgling Nerd's Guide to the Command Line
         [gang]: https://twitter.com/chrischau/status/20322575538
         [comic]: http://imgs.xkcd.com/comics/real_programmers.png "Real programmers set the universal constants at the start such that the universe evolves to contain the disk with the data they want."
         [link]:  http://xkcd.com/378/
+
+%section
+  %section
+    %h2 Customize Your Shell 🐌
+    :markdown
+      Vim uses a `~/.vimrc` file for configuration. Bash uses a `~/.bashrc`.
+
+      <small>`rc` stands for "Runtime Control", which doesn't shed a whole lot
+      of light. Just remember that rc files are configuration files.</small>
+
+      Let's customize it! Open `~/.bashrc` using vim, and <nobr>head thataway &darr;</nobr>
+
+  %section
+    %h2 <code>alias</code> yourself a shortcut
+    :markdown
+      Let's pretend you have to change to your desktop _all the time_. You're sick of typing this:
+
+          cd ~/Desktop
+
+      You're in luck! You can add a simple `alias` to your .bashrc! Add this:
+
+          alias d="cd ~/Desktop"
+
+      Now try it out. Save and exit vim ([remember how?](#/2/6)) and enter `d`. <nobr>Didn't work? &darr;</nobr>
+
+  %section
+    %h2 I like the way you source it, source it 💃🏼
+    :markdown
+      Before changes to your `.bashrc` take effect, you need to _source_ the file.
+
+      Your bashrc is automatically sourced when you open a new shell. So open
+      one! (Press ⌘T for a new tab.) And now press `d`. Coool. 😎
+
+      But now head back to that original shell. Enter `. ~/.bashrc` (shorthand
+      for `source ~/.bashrc`). Now enter `d`. Sweet!
+
+      Ok, one more thing &darr;
+
+  %section
+    %h2 Go Hog Wild 🐖
+    :markdown
+      Here's a nice introductory [.bashrc][brc] file for you. Go ahead and
+      download it, saving to your home folder as ".bashrc" (_with
+      the dot!_).
+
+      Open it with vim and play around!
+
+      Wondering what else you can do with a bashrc? [Search Github][dotfiles]
+      for lots of other ideas!
+
+        [brc]: /bashrc
+        [dotfiles]: https://github.com/search?q=dotfiles+bash&repo=&langOverride=&start_value=1&type=Everything&language=
+
+  %section
+    %h3 Pretty Prompt 💅🏼
+    :markdown
+      Look through the .bashrc you downloaded for instructions on how to make your shell look like this:
+
+      ![a shell with a pretty and minimalist prompt](/images/pretty-prompt.png)
 
 %section
   %section
@@ -232,7 +275,7 @@ title: A Fledgling Nerd's Guide to the Command Line
   %section
     %h2 Live Dangerously &ndash; Unix
     :markdown
-      On most *nix-based systems these days (unix, linux, OSX), you're not
+      On most *nix-based systems these days (unix, linux, macOS), you're not
       allowed to just run around as a super user because that's _scary_.
       Instead, you prefix specific commands with `sudo`:
 
@@ -282,9 +325,9 @@ title: A Fledgling Nerd's Guide to the Command Line
     :markdown
       Sometimes the inbuilt stuff just isn't enough! If you want more, you'll need a _package manager_.
 
-          $ cowsay Package Managers ftw!
+          $ cowsay package managers rock!
             _______________________
-           < Package Managers ftw! >
+           < package managers rock! >
             -----------------------
                     \   ^__^
                      \  (oo)\_______
@@ -297,9 +340,9 @@ title: A Fledgling Nerd's Guide to the Command Line
         [ascii]: https://en.wikipedia.org/wiki/ASCII
 
   %section
-    %h2 Getting Cowsay and other fun things on OSX
+    %h2 Getting Cowsay and other fun things on <span style="text-transform: none">macOS</span>
     :markdown
-      The preferred package manager for your Mac running OSX these days is
+      The preferred package manager for your Mac running macOS these days is
       [Homebrew][brew].  An older way was MacPorts, so you might still hear
       people mention that now & then. You can follow the link to Homebrew to
       see how to install it, but once you do, go ahead and
@@ -341,7 +384,7 @@ title: A Fledgling Nerd's Guide to the Command Line
       No idea. If you know, [please tell me](https://twitter.com/chadoh).
 
 %section
-  %h2 Read The Effing Manual
+  %h2 Read The Effing Manual 😡
   :markdown
     Now and then, when [n00bs][n00b] ask for help on forums, the crotchety
     enlightened will respond with a curt "rtfm". What manual??
@@ -411,18 +454,41 @@ title: A Fledgling Nerd's Guide to the Command Line
 %section
   %h2 I Quit
   :markdown
-    To _force quit_ a process that seems to be stuck, just hit Control-C (*not*
-    Command-C, OSX users!)
+    To _force quit_ a process that seems to be stuck, just hit
+    <kbd>control</kbd> <kbd>c</kbd> (*not* <kbd>⌘</kbd> <kbd>C</kbd>, macOS
+    users!) Let's try it. Copy & paste this command:
 
-    This is used in a lot of places. Open up `ls ~ | less` and then hit
-    Shift-F. This _follows_ the file, automatically showing you new content
-    as it appears (which makes more sense with a log). To get it to stop
-    following the file, you have to "interrupt" it, which you do with
-    Control-C. Then you can `q` as normal to get out of `less` altogether.
+        $ I=0; while [ $I -lt 100 ]; do \
+            echo $I >> count.txt && let I=I+1 && sleep 1; \
+          done & less count.txt
 
-%section(data-background="/images/hooray.png")
-  %h2 Awesome
-  :markdown
-    You know a lot about the command line.
+    Long command! But now you're in familiar-by-now `less`, looking at a file
+    called `count.txt`. It's a boring file right now. Just a `0`. But wait,
+    there's more! Press `shift f` to _follow_ the file. omg, counting!
 
-    Go boss your computer around.
+    But now `less` is stuck! Aha. Press <kbd>control</kbd> <kbd>c</kbd> to stop
+    following the file. Then you can `q` to quit, [just like normal](/#/5).
+
+%section
+  %section(data-background="/images/hooray.png")
+    %h2 Awesome
+    :markdown
+      You know a lot about the command line.
+
+      Go boss your computer around.
+
+  %section
+    %h2 But I want to boss around a different computer 🖥
+    :markdown
+      Good for you!
+
+      Go learn about `ssh` (_secure shell_)
+
+      Digital Ocean has [a great guide to setting up your very own server][do].
+      Once it's set up, you can `ssh` into it. Then you'll have command-line
+      access to a whole different computer. A computer in the cloud! All of the
+      commands you just learned will still work on it.
+
+      You're ready to rule the world.
+
+        [do]: https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server
