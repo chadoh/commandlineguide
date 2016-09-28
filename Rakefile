@@ -11,6 +11,12 @@ config = YAML.load_file("config.yml")
 pwd = Dir.getwd
 
 namespace :aws do
+  desc "Compile static assets"
+  task :build do
+    log.info("Compiling static assets")
+    `bundle exec middleman build`
+  end
+
   desc "Deploy to S3."
   task :s3 do
 
@@ -63,7 +69,7 @@ namespace :aws do
 
   desc "Deploy files to S3 and invalidate Cloudfront distribution"
   # task :deploy => [:s3, :invalidate]
-  task :deploy => [:s3]
+  task :deploy => [:build, :s3]
 
   task :default => :deploy
 end
