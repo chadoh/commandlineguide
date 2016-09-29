@@ -234,14 +234,21 @@ title: A Non-Nerd's Guide to the Command Line
       Let's make two of something.
 
           $ touch woohoo.txt
-          $ cp woohoo.txt tmp.txt && ls
+          $ cp woohoo.txt amazing.txt
 
       `cp` makes copies. You just tell it the file to copy, and then the new place
       and name to put it/name it.
 
-      The `&&` is how you enter multiple commands on one line. Make sure you use
-      _two_ "&"s, though; using only one does something _veeery_ different!
-      You'll be very confused if you only use one!
+  %section
+    %h3 Pro Tip: <code>&&</code>
+    :markdown
+      Run two commands at once with `&&`. To make a copy and then list all
+      files (to verify it actually copied), you can do this:
+
+          cp amazing.txt fabulous.txt && ls
+
+      Make sure you use _two_ "&"s, though; using only one does something
+      _veeery_ different!  You'll be very confused if you only use one!
 
       <small>Using only one `&` starts something in the background. Search online
       to find out more about it.</small>
