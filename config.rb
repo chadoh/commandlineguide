@@ -8,6 +8,7 @@
 page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
+page '/survey.html', layout: false
 
 # With alternative layout
 # page "/path/to/file.html", layout: :otherlayout
@@ -42,3 +43,6 @@ configure :build do
   # Minify Javascript on build
   # activate :minify_javascript
 end
+
+# pretty URLs
+activate :directory_indexes
