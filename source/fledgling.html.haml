@@ -405,6 +405,7 @@ title: A Fledgling Nerd's Guide to the Command Line
 %section
   %section
     %h2 Pipes
+    / TODO: mention grep!!
     :markdown
       Look at the slash key on your keyboard that's above the Enter key
       (that's the backslash, by the way; the one on the `?` key is just
@@ -460,7 +461,7 @@ title: A Fledgling Nerd's Guide to the Command Line
 
         $ I=0; while [ $I -lt 100 ]; do \
             echo $I >> count.txt && let I=I+1 && sleep 1; \
-          done & less count.txt
+          done && less count.txt
 
     Long command! But now you're in familiar-by-now `less`, looking at a file
     called `count.txt`. It's a boring file right now. Just a `0`. But wait,
